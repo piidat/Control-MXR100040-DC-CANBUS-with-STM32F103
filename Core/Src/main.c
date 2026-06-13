@@ -110,8 +110,6 @@
 
 	void maxwell_init()
 	{
-		// Khoi tao filter
-		// read data 0x060F80xx
 		sFilterConfig_0.FilterBank = 0;
 		sFilterConfig_0.FilterMode = CAN_FILTERMODE_IDMASK;
 		sFilterConfig_0.FilterScale = CAN_FILTERSCALE_32BIT;
@@ -152,24 +150,17 @@
 
 	void process(){
 		static uint32_t time_request = 0;
-//		static uint8_t lock = 1;
 		static uint8_t last_state = 0;
-//		if(Can_state == SLEEP && lock){
-//			time_request = HAL_GetTick();
-//			lock = 0;
-//		}
 		if((HAL_GetTick()-time_request>=2000) && Can_state == SLEEP){
 			test+=1;
 			Can_state = SEND_RQ_READ_STT;
 			time_request = HAL_GetTick();
-//			lock = 1;
 		}
 		if(state != last_state){
 			if(state == 1){
 			  while (HAL_CAN_GetTxMailboxesFreeLevel(&hcan) == 0);
 			  HAL_CAN_AddTxMessage(&hcan,&TxHeader,ON,&TxMailbox);
 			  Can_state = SLEEP;
-//			  lock = 1;
 			}else{
 			  while (HAL_CAN_GetTxMailboxesFreeLevel(&hcan) == 0);
 			  HAL_CAN_AddTxMessage(&hcan,&TxHeader,OFF,&TxMailbox);
