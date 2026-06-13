@@ -1,0 +1,31 @@
+# Giữ lại các file chạy chính và file cấu hình CubeMX
+!*.ioc
+!*.c
+!*.h
+!*.s
+
+# Bỏ qua thư mục build (chứa file .o, .d và các file thực thi tạm thời)
+Debug/
+Release/
+build/
+
+# Bỏ qua các file thực thi đầu ra nếu bạn muốn lưu chúng ở chỗ khác
+# (Nếu muốn đẩy file .hex hoặc .bin lên Git thì thêm dấu ! ở đầu, ví dụ: !*.hex)
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+
+# Bỏ qua file cấu hình cá nhân của CubeIDE / Eclipse
+.settings/
+.local_settings/
+*.launch
+
+# Bỏ qua các file log và lịch sử biên dịch
+*.log
+*.su
+
+# Thư mục tạm thời của hệ điều hành
+.DS_Store
+Thumbs.db
